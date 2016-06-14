@@ -32,7 +32,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 //                result_request.setText("My Application Created");
-                String url = "http://192.168.1.213:3000/api/v1/sessions";
+                String url = "http://railsa.mybluemix.net/api/v1/sessions";
                 String loginId = username_input.getText()+"";
                 String password = password_input.getText()+"";
 

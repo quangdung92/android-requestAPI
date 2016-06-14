@@ -17,32 +17,6 @@
             android:layout_alignParentStart="true" android:src="@drawable/logo_main"
             android:longClickable="false" android:visibility="visible"/>
 
-    <com.beardedhen.androidbootstrap.BootstrapButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            app:bootstrapBrand="primary"
-            app:bootstrapSize="lg"
-            app:buttonMode="regular"
-            app:showOutline="true"
-            app:roundedCorners="true"
-            android:id="@+id/login_btn"
-            android:layout_marginLeft="40dp" android:layout_marginStart="40dp"
-            android:layout_alignParentBottom="true" android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" android:layout_marginBottom="179dp"/>
-
-    <com.beardedhen.androidbootstrap.BootstrapButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Sign up"
-            app:bootstrapBrand="primary"
-            app:bootstrapSize="lg"
-            app:buttonMode="regular"
-            app:showOutline="false"
-            app:roundedCorners="true"
-            android:id="@+id/signup_btn"
-            android:layout_marginRight="39dp" android:layout_marginEnd="39dp" android:layout_alignTop="@+id/login_btn"
-            android:layout_alignRight="@+id/logo_main" android:layout_alignEnd="@+id/logo_main"/>
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -61,8 +35,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/username_input"
             android:minWidth="200dp"
-            android:layout_alignBottom="@+id/username_label" android:layout_alignRight="@+id/signup_btn"
-            android:layout_alignEnd="@+id/signup_btn" android:maxWidth="200dp"/>
+            android:layout_alignBottom="@+id/username_label"
+            android:maxWidth="200dp" android:layout_alignRight="@+id/logo_main"
+            android:layout_alignEnd="@+id/logo_main"/>
     <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,12 +53,13 @@
             android:id="@+id/result_request" android:layout_below="@+id/password_input" android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" android:layout_marginTop="27dp"
             android:layout_alignRight="@+id/password_input" android:layout_alignEnd="@+id/password_input"
-            android:layout_above="@+id/login_btn"/>
+            />
     <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Check"
-            android:id="@+id/ck_btn" android:layout_below="@+id/signup_btn" android:layout_centerHorizontal="true"
-            android:layout_marginTop="35dp"/>
+            android:id="@+id/ck_btn"
+            android:layout_below="@+id/result_request" android:layout_alignLeft="@+id/password_input"
+            android:layout_alignStart="@+id/password_input"/>
 
 </RelativeLayout>
