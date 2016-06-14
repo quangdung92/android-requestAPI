@@ -2,14 +2,19 @@ package com.ND.gizilocker.app;
 
 import android.os.AsyncTask;
 import cz.msebera.android.httpclient.HttpResponse;
+import cz.msebera.android.httpclient.HttpStatus;
+import cz.msebera.android.httpclient.NameValuePair;
 import cz.msebera.android.httpclient.StatusLine;
 import cz.msebera.android.httpclient.client.HttpClient;
-import cz.msebera.android.httpclient.client.methods.HttpGet;
+import cz.msebera.android.httpclient.client.entity.UrlEncodedFormEntity;
 import cz.msebera.android.httpclient.client.methods.HttpPost;
 import cz.msebera.android.httpclient.impl.client.DefaultHttpClient;
+import cz.msebera.android.httpclient.message.BasicNameValuePair;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 /**
@@ -22,13 +27,28 @@ public class Connection extends AsyncTask<String, String, String> {
         HttpClient httpclient = new DefaultHttpClient();
         HttpResponse response;
         String responseString = null;
+//        loginId,passWord
         try {
-            response = httpclient.execute(new HttpPost(params[0]));
+//            Create data params
+            List<NameValuePair> user = new ArrayList<NameValuePair>();
+            user.add(new BasicNameValuePair("loginId", "testC"));
+            user.add(new BasicNameValuePair("passWord", "13081992"));
+//            Request API, NameValuePair
+            HttpPost httppost = new HttpPost(params[0]);
+            httppost.setEntity(new UrlEncodedFormEntity(user));
+
+            response = httpclient.execute(httppost);
             StatusLine statusLine = response.getStatusLine();
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            response.getEntity().writeTo(out);
-            responseString = out.toString();
-            out.close();
+            if(statusLine.getStatusCode() == HttpStatus.SC_OK){
+                ByteArrayOutputStream out = new ByteArrayOutputStream();
+                response.getEntity().writeTo(out);
+                responseString = out.toString();
+                out.close();}
+            else {
+                //Closes the connection.
+                response.getEntity().getContent().close();
+                throw new IOException(statusLine.getReasonPhrase());
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

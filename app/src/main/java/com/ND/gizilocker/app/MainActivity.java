@@ -32,8 +32,8 @@ public class MainActivity extends ActionBarActivity {
 //                result_request.setText("My Application Created");
                 String url = "http://192.168.1.213:3000/api/v1/sessions";
                 Connection con = new Connection();
-                con.execute(url);
-                log.warning(String.valueOf(con));
+                String res = String.valueOf(con.execute(url));
+                log.warning(String.valueOf(res));
             }
         });
     }
