@@ -31,8 +31,8 @@ public class Connection extends AsyncTask<String, String, String> {
         try {
 //            Create data params
             List<NameValuePair> user = new ArrayList<NameValuePair>();
-            user.add(new BasicNameValuePair("loginId", "testC"));
-            user.add(new BasicNameValuePair("passWord", "13081992"));
+            user.add(new BasicNameValuePair("loginId", params[1]));
+            user.add(new BasicNameValuePair("passWord", params[2]));
 //            Request API, NameValuePair
             HttpPost httppost = new HttpPost(params[0]);
             httppost.setEntity(new UrlEncodedFormEntity(user));

@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import com.beardedhen.androidbootstrap.TypefaceProvider;
+
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Logger;
 
 
@@ -31,9 +33,22 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
 //                result_request.setText("My Application Created");
                 String url = "http://192.168.1.213:3000/api/v1/sessions";
+                String loginId = username_input.getText()+"";
+                String password = password_input.getText()+"";
+
                 Connection con = new Connection();
-                String res = String.valueOf(con.execute(url));
-                log.warning(String.valueOf(res));
+                try {
+                    String res = con.execute(url,loginId,password).get();
+                    if (res == null) {
+                        result_request.setText("Not found!");
+                    } else { result_request.setText(res);}
+
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
     }
